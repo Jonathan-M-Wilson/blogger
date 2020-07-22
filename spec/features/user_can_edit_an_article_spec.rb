@@ -25,4 +25,18 @@ RSpec.describe "User can edit an article", type: :feature do
       expect(page).to_not have_content(@article_2.body)
     end
   end
+
+  describe "When a user edits an article" do
+    it "can display a flash message after editing an article" do
+      visit article_path(@article_1)
+      click_link "Edit"
+
+      fill_in "article[title]", with: "Edited Sample Title!"
+      fill_in "article[body]",  with: "Edited Sample Body!"
+      click_on "Update Article"
+
+      expect(current_path).to eq(article_path(@article_1))
+      expect(page).to have_content("Article 'Edited Sample Title!' has been updated!")
+    end
+  end
 end
