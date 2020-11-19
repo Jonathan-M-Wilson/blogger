@@ -1,27 +1,27 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe 'As a visitor', type: :feature do
   before(:each) do
-    @article_1 = Article.create!(title: "Title 1", body: "Body 1")
-    @article_2 = Article.create!(title: "Title 2", body: "Body 2")
+    @article_1 = Article.create!(title: 'Title 1', body: 'Body 1')
+    @article_2 = Article.create!(title: 'Title 2', body: 'Body 2')
   end
 
-  describe "user can see all articles" do
-    describe "when a user visits /articles" do
-      it "displays all articles" do
-
+  describe 'user can see all articles' do
+    describe 'when a user visits /articles' do
+      it 'displays all articles' do
         visit '/articles'
 
         expect(page).to have_link(@article_1.title)
         expect(page).to have_link(@article_2.title)
       end
 
-      it "displays a link to create a new article" do
-
+      it 'displays a link to create a new article' do
         visit '/articles'
 
-        expect(page).to have_link("Create a New Article")
-      end 
+        expect(page).to have_link('Create a New Article')
+      end
     end
   end
 end
