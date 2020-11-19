@@ -14,7 +14,7 @@ RSpec.describe 'As a visitor', type: :feature do
 
         click_link @article_1.title
 
-        expect(current_path).to eq("/articles/#{@article_1.id}")
+        expect(current_path).to eq(article_path(@article_1))
 
         expect(page).to have_content(@article_1.title)
         expect(page).to have_content(@article_1.body)
