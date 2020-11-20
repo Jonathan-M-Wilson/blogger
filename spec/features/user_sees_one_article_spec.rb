@@ -28,4 +28,21 @@ RSpec.describe 'As a visitor', type: :feature do
       end
     end
   end
+
+  describe "they fill in a comment form" do
+   it "displays the comment on the article show" do
+     visit '/articles'
+
+     click_link @article_1.title
+
+     fill_in "comment[author_name]", with: "Kathy"
+     fill_in "comment[body]", with: "Wow! I love this so much!"
+     click_on "Submit"
+
+     expect(current_path).to eq(article_path(@article_1))
+     expect(page).to have_content("Post a Comment")
+     expect(page).to have_content("Kathy")
+     expect(page).to have_content("Wow! I love this so much!")
+    end
+  end
 end
